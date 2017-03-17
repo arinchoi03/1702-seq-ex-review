@@ -7,9 +7,9 @@ var path = require('path');
 
 var db = require('./models').db;
 
-module.exports = app;
-
 app.use(express.static(path.join(__dirname, './public')));
+//static route not actually used in this example, but important to know
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

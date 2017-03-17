@@ -32,6 +32,10 @@ router.post('/:name', function(req, res, next) {
     .catch(next);
 });
 
+//note in post route above that you have access to any given query string a user
+//puts in the path but you do NOT make query strings part of your first
+//argument given to .post
+
 router.put('/:id/groom', function(req, res, next) {
   Cat.findById(req.params.id)
     .then(function(cat) {
