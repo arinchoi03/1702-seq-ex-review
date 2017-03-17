@@ -1,0 +1,29 @@
+{
+  "name": "seq-ex-review",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulieBusch/1702-seq-ex-review.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulieBusch/1702-seq-ex-review/issues"
+  },
+  "homepage": "https://github.com/JulieBusch/1702-seq-ex-review#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "pg": "^6.1.4",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.30.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
