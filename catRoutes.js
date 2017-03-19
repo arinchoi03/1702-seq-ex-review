@@ -39,7 +39,10 @@ router.post('/:name', function(req, res, next) {
 router.put('/:id/groom', function(req, res, next) {
   Cat.findById(req.params.id)
     .then(function(cat) {
-      res.send(cat.grooming());
+      cat.grooming();
+    })
+    .then(function() {
+      res.send(`Someone got a haircut!`)
     })
     .catch(next);
 });
