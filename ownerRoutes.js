@@ -18,20 +18,32 @@ router.get('/:id', function(req, res, next) {
     .catch(next);
 });
 
-router.put('/:name/:catId', function(req, res, next) {
+router.put('/:name/:catId?', function(req, res, next) {
+  var catId;
+  if (!req.params.catId) {
+    Cat.count()
+      .then(function(length) {
+        catId = Math.ceil(length * Math.random())
+      })
+      .catch(next)
+  } else {
+    catId = req.params.catId;
+  }
+
   Owner.find({
     where: {
       name: req.params.name
     }
   })
   .then(function(oneOwner){
-      oneOwner.adopt(req.params.catId)
+    oneOwner.adopt(catId)
   })
   .then(function(){
     res.send(`Someone has been adopted by ${req.params.name}!`)
   })
   .catch(next)
-})
+
+});
 
 router.post('/:name', function(req, res, next) {
   Owner.create({

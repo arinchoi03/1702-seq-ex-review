@@ -53,6 +53,12 @@ var Cat = db.define('cats', {
                     fluffiness: 'longhaired'
                 }
             });
+        },
+        count: function() {
+            return this.findAll()
+                .then(function(cats) {
+                    return cats.length
+            });
         }
     },
 
@@ -91,14 +97,11 @@ var Owner = db.define('owners', {
             }
         },
         adopt: function(catId) {
-            var totalCats = function() {return Cat.findAll().length}
             var owner = this;
-            if (!catId) {
-                catId = Math.ceil(Math.random() * totalCats())
-            }
             Cat.find({
                 where: {
-                    id: catId
+                    id: catId,
+                    ownerId: null
                 }
             }).then(function(cat){
                 owner.setCats(cat)
@@ -108,6 +111,7 @@ var Owner = db.define('owners', {
 });
 
 Owner.hasMany(Cat);
+Cat.belongsTo(Owner);
 
 module.exports = {
     db: db,
