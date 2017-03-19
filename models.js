@@ -37,8 +37,7 @@ var Cat = db.define('cats', {
 
     instanceMethods: {
         grooming: function() {
-            this.fluffiness = 'shorthaired';
-            return `Someone got a haircut!`;
+                return `Someone got a bath!`;
         }
     },
 
