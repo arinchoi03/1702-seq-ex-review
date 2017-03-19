@@ -42,7 +42,7 @@ router.put('/:id/groom', function(req, res, next) {
       cat.grooming();
     })
     .then(function() {
-      res.send(`Someone got a haircut!`)
+      res.send(`Someone got a haircut!`);
     })
     .catch(next);
 });
