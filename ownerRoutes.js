@@ -18,6 +18,36 @@ router.get('/:id', function(req, res, next) {
     .catch(next);
 });
 
+router.put('/:name/:catId', function(req, res, next) {
+  Owner.find({
+    where: {
+      name: req.params.name
+    }
+  })
+  .then(function(oneOwner){
+      oneOwner.adopt(req.params.catId)
+  })
+  .then(function(){
+    res.send(`Someone has been adopted by ${req.params.name}!`)
+  })
+  .catch(next)
+})
+
+router.put('/:name', function(req, res, next) {
+  Owner.find({
+    where: {
+      name: req.params.name
+    }
+  })
+  .then(function(oneOwner){
+    oneOwner.adopt()
+  })
+  .then(function(){
+    res.send(`Someone has been adopted by ${req.params.name}!`)
+  })
+  .catch(next)
+})
+
 router.post('/:name', function(req, res, next) {
   Owner.create({
     name: req.params.name,
@@ -26,4 +56,3 @@ router.post('/:name', function(req, res, next) {
     .then(res.sendStatus(201))
     .catch(next);
 });
-

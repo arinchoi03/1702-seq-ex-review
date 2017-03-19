@@ -89,9 +89,22 @@ var Owner = db.define('owners', {
             } else {
                 return `${this.name} is just a regular cat person!`;
             }
+        },
+        adopt: function(catId) {
+            var totalCats = function() {return Cat.findAll().length}
+            var owner = this;
+            if (!catId) {
+                catId = Math.ceil(Math.random() * totalCats())
+            }
+            Cat.find({
+                where: {
+                    id: catId
+                }
+            }).then(function(cat){
+                owner.setCats(cat)
+            })
         }
     }
-
 });
 
 Owner.hasMany(Cat);
