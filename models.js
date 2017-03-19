@@ -40,9 +40,6 @@ var Cat = db.define('cats', {
             this.update({
                 fluffiness: 'shorthaired'
             })
-            .then(function() {
-                return `Someone got a haircut!`;
-            })
             .catch();
 
         }
