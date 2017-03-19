@@ -14,7 +14,7 @@
 * I highly recommend downloading the Postman tool for testing routes
     * You can use Postman to send all types of requests to your localhost and see the responses
 
-### Try adding your own mathods and routes!
+### Try adding your own methods and routes!
 
 * See if you can use the methods given to you by the "Owner has many cats" relation!
     * Create an owner instance method called `adopt` that is a function that can be passed the id of a cat and then associates that cat with its new owner! (Have the owner adopt a random cat if no id is passed in.)
