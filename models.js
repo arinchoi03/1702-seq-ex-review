@@ -97,21 +97,26 @@ var Owner = db.define('owners', {
             }
         },
         adopt: function(catId) {
-            var owner = this;
-            Cat.find({
-                where: {
-                    id: catId,
-                    ownerId: null
-                }
-            }).then(function(cat){
-                owner.setCats(cat)
-            })
+            if (catId) {
+                this.addCat(catId) // this method can take the entire instance/catId
+                // 'this' is the owner
+                // this method allows catId to be attached to owner
+            } else {
+                //find the first cat in the db w/o ownerId
+                Cat.findOne({
+                    where: {
+                        ownerId: null
+                    }
+                })
+                .then(cat => this.addCat(cat)) // this necessary to bind addCat to this...or will not work!
+                /* if function(cat) {this.addCat(cat)} would NOT work!!! */
+                .catch();
+            }
         }
     }
 });
 
 Owner.hasMany(Cat);
-Cat.belongsTo(Owner);
 
 module.exports = {
     db: db,

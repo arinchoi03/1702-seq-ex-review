@@ -18,14 +18,10 @@ router.get('/:id', function(req, res, next) {
     .catch(next);
 });
 
-router.put('/:name/:catId?', function(req, res, next) {
+router.put('/:name/adopt/:catId?', function(req, res, next) {
   var catId;
   if (!req.params.catId) {
-    Cat.count()
-      .then(function(length) {
-        catId = Math.ceil(length * Math.random())
-      })
-      .catch(next)
+    catId = undefined;
   } else {
     catId = req.params.catId;
   }
